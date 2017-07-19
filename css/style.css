@@ -1,0 +1,16 @@
+﻿.bottom-space {
+    margin-bottom: 10px;
+}
+
+.answer {
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+}
+
+    .answer:hover {
+        cursor: pointer;
+    }
+.danger-background{
+    background-color:tomato;
+}

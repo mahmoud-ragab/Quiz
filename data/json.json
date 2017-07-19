@@ -1,0 +1,97 @@
+﻿[
+  {
+    "Question": "A red house is made out of red bricks, a blue house is made out of blue bricks.Whats a green house made out of?",
+    "possibilities": [
+      {
+        "answer": "Green bricks (Of course)"
+      },
+      {
+        "answer": "Glass (What the...?Why would it be this)"
+      },
+      {
+        "answer": "Green (Why would it be made out of 1 color?)"
+      },
+      {
+        "answer": "Shoes (I have no idea)Im guesing?"
+      }
+    ],
+    "selected": null,
+    "success": "Green bricks (Of course)"
+  },
+  {
+    "Question": "There are 5 people on a boat.All of a sudden the boat flips.All but 1 gets there hair wet.Why didnt 1the 1 get his hair wet?",
+    "possibilities": [
+      {
+        "answer": "Because he could hover above water. (Awesome technique)"
+      },
+      {
+        "answer": "Dirty person (Hes so dirty, that the water couldnt get near him.hahahaha)"
+      },
+      {
+        "answer": "Bald (No way.Wrong answer, it has to have more inflict)"
+      },
+      {
+        "answer": "He was running on the water to land (Kung-fu or was it magic?)"
+      }
+    ],
+    "selected": null,
+    "success": "Bald (No way.Wrong answer, it has to have more inflict)"
+  },
+  {
+    "Question": "You are leading a cow north 1 mile, then east 1 mile, then south 1 mile, then west 1 mile.Where is the cows tail pointing?",
+    "possibilities": [
+      {
+        "answer": "East (Of course) (Your the dummy)"
+      },
+      {
+        "answer": "Down (Not why would the cow leave its tail up?)"
+      },
+      {
+        "answer": "North (Hehe)"
+      },
+      {
+        "answer": "West (Booyah.Im so sure I could eat the cow)"
+      }
+    ],
+    "selected": null,
+    "success": "West (Booyah.Im so sure I could eat the cow)"
+  },
+  {
+    "Question": "What baby has a beard when it was a baby? Clue:Its an animal-Be precise",
+    "possibilities": [
+      {
+        "answer": "Anime (I love anime)"
+      },
+      {
+        "answer": "Goat (Randooomm)"
+      },
+      {
+        "answer": "Donkey (From shrek)"
+      },
+      {
+        "answer": "Shrek (Cartoon.Mauhahahaha)"
+      }
+    ],
+    "selected": null,
+    "success": "Donkey (From shrek)"
+  },
+  {
+    "Question": "Who won the Election?Whos president?Whos who?",
+    "possibilities": [
+      {
+        "answer": "Obama (This is hard)(I know this is right)"
+      },
+      {
+        "answer": "Clue:How many questions have I asked on the top?(I have no idea why I put it here)"
+      },
+      {
+        "answer": "Obama won (Of course)"
+      },
+      {
+        "answer": "Me (I am so famous)"
+      }
+    ],
+    "selected": null,
+    "success": "Clue:How many questions have I asked on the top?(I have no idea why I put it here)"
+  }
+]

@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html ng-cloak="" ng-app="QuizApp">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div ng-controller="loginController">
+        <!--Header - Begin-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" ng-click="home()">Quiz App</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right" ng-show="appMetrics.toggleForm" >
+                    <li><a ng-if="user.isAuthenticated === true">Welcome, {{user.username}}!</a></li>
+                    <li><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!--Header - End-->
+
+        <!--Login Form - Begin-->
+        <form ng-submit="login()" class="well well-sm col-md-4 col-md-offset-4" ng-hide="appMetrics.toggleForm" ng-if="!appMetrics.authenticatedUser">
+            <h2 class="text-center">Login Form</h2>
+            <div class="form-group">
+                <label for="un">Email</label>
+                <input type="email" id="un" class="form-control" ng-model="user.username" required />
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" id="pwd" class="form-control" ng-model="user.password" required />
+            </div>
+            <input class="btn btn-info pull-right" style="width:90px;" type="submit" value="Login" />
+            <p class="text-danger">{{loginError}}</p>
+        </form>
+        <!--Login Form - End-->
+    </div>
+
+    <!--Quiz page - Start-->
+    <div ng-controller="quizController" class="col-md-10 col-md-offset-1" ng-show="appMetrics.toggleForm">
+        <div ng-show="hideInfo" class="row">
+            <div class="col-sm-6">
+                <h4><strong style="color:#5BC0DE;">Blue Answers</strong>: Your Answers.</h4>
+                <h4><strong style="color:#5CB85C;">Green Answers</strong>: Correct Answers.</h4>
+            </div>
+            <div class="col-sm-6">
+                <h4><strong style="color:#D9534F;">Red Answers</strong>: Wrong Answers.</h4>
+                <h4><strong style="color:#FF6347;">Red Questions</strong>: Left Out Answers.</h4>
+            </div>
+        </div>
+
+        <div class="row" ng-if="appMetrics.authenticatedUser" ng-hide="hideInfo">
+            <div class="well well-sm">
+                <h2>Welcome To The Quiz Application</h2>
+                <p>There is nothing much to do here. So, if you want to take a quiz </p>
+                <button class="btn btn-warning" ng-click="StartQuiz()">Click Here</button>
+            </div>
+        </div>
+
+        <div class="row container" ng-show="hideInfo">
+            <h3>Questions</h3>
+            <div class="well well-sm" ng-repeat="Question in dataservice.Questions"
+                 ng-class="{'danger-background': Question.selected === nullvalue}">
+                <h4><strong>{{($index + 1) + '. ' + Question.Question}}</strong></h4>
+                <div class="row">
+                    <div class="col-sm-6" ng-repeat="answer in Question.possibilities">
+                        <h4 class="answer" ng-hide="afterSubmit"
+                            ng-class="{'btn-info': Question.selected === answer.answer}"
+                            ng-click="SelectAnswer(answer, $parent.$index)">
+                            {{($index + 1) + '. ' + answer.answer}}
+                        </h4>
+                        <h4 class="answer" ng-show="afterSubmit"
+                            ng-class="{ 'btn-success': Question.success === answer.answer,
+                            'btn-danger': Question.success !== answer.answer,
+                            'btn-info': Question.selected === answer.answer}"
+                            ng-click="SelectAnswer(answer, $parent.$index)">
+                            {{($index + 1) + '. ' + answer.answer}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success pull-right btn-lg"
+                    ng-click="SubmitQuiz()" data-toggle="modal" data-target="{{triggerModal}}">
+                Submit
+            </button>
+            <br /><br /><br />
+        </div>
+
+        <div class="modal fade" id="quiz-info" role="dialog">
+            <div class="modal-dialog">
+
+                <!--Modal Content-->
+                <div class="modal-content">
+
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2>Quiz Result</h2>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row top-buffer">
+                            <div class="col-md-6">
+                                <h3>You Scored: {{rightAnswers}}/5</h3>
+                                <h2><strong>{{(rightAnswers / 5) * 100}}%</strong></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 top-buffer">
+                                <button class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--Quiz page - End-->
+
+    <!--Third-party scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!--My scripts-->
+    <script src="js/app.js"></script>
+    <script src="js/services/loginService.js"></script>
+    <script src="js/services/dataService.js"></script>
+    <script src="js/controllers/quizController.js"></script>
+    <script src="js/controllers/loginController.js"></script>
+    <script src="js/factories/appMetrics.js"></script>
+</body>
+</html>
